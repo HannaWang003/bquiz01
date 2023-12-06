@@ -22,16 +22,17 @@ class DB
         $this->table = $table;
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
-    function all($where='',$other=''){
-        if(isset($this->table) && !empty($this->table)){
-$sql = "select * from `$this->table` ";
-$sql = $this->sql_all($sql,$where,$other);
-return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    function all($where = '', $other = '')
+    {
+        if (isset($this->table) && !empty($this->table)) {
+            $sql = "select * from `$this->table` ";
+            $sql = $this->sql_all($sql, $where, $other);
+            return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         }
-
     }
-    function math($math,$col,$where='',$other=''){
-        switch($math){
+    function math($math, $col, $where = '', $other = '')
+    {
+        switch ($math) {
             case 'count':
                 $sql = "select count(`$col`) from `$this->table` ";
                 break;
@@ -45,63 +46,65 @@ return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                 $sql = "select avg(`$col`) from `$this->table` ";
                 break;
         }
-        $sql = $this->sql_all($sql,$where,$other);
+        $sql = $this->sql_all($sql, $where, $other);
         return $this->pdo->query($sql)->fetchColumn();
     }
-    function find($where){
+    function find($where)
+    {
         $sql = "select * from $this->table ";
-if(is_array($where)){
-   $tmp = $this->a2s($where);
-   $sql .=" where ".join(" && ",$tmp);
-}
-elseif(is_numeric($where)){
-$sql .= " where `id`=".$where;
-}
-return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-    }
-    function save($array){
-        if(isset($array['id'])){
-            $sql = "update `$this->table` set "; 
-            if(!empty($array)){
-                $tmp=$this->a2s($array);
-            }           
-            $sql.=join(",",$tmp);
-            $sql.=" where `id`='{$array['id']}'";
+        if (is_array($where)) {
+            $tmp = $this->a2s($where);
+            $sql .= " where " . join(" && ", $tmp);
+        } elseif (is_numeric($where)) {
+            $sql .= " where `id`=" . $where;
         }
-        else{
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+    }
+    function save($array)
+    {
+        if (isset($array['id'])) {
+            $sql = "update `$this->table` set ";
+            if (!empty($array)) {
+                $tmp = $this->a2s($array);
+            }
+            $sql .= join(",", $tmp);
+            $sql .= " where `id`='{$array['id']}'";
+        } else {
             $sql = "insert into `$this->table`";
-            $tmp=array_keys($array);
-            $col ="`".join("`,`",$tmp)."`";
-            $val ="'".join("','",$array)."'";
-            $sql.=" ($col) VALUES ($val)";
+            $tmp = array_keys($array);
+            $col = "`" . join("`,`", $tmp) . "`";
+            $val = "'" . join("','", $array) . "'";
+            $sql .= " ($col) VALUES ($val)";
         }
         return $this->pdo->exec($sql);
     }
-    function del($where){
+    function del($where)
+    {
         $sql = "delete from $this->table where ";
         $tmp = $this->a2s($where);
-        $sql.=join(" && ",$tmp);
+        $sql .= join(" && ", $tmp);
         return $this->pdo->exec($sql);
     }
-private function a2s($where){
-    foreach($where as $key => $val){
-        $tmp[]="`$key`='$val'";
+    private function a2s($where)
+    {
+        foreach ($where as $key => $val) {
+            $tmp[] = "`$key`='$val'";
+        }
+        return $tmp;
     }
-    return $tmp;
-}
-    private function sql_all($sql,$where,$other){
-        if(is_array($where)){
-            if(!empty($where)){
-                $sql.=" where ".join(" && ",$this->a2s($where));
+    private function sql_all($sql, $where, $other)
+    {
+        if (is_array($where)) {
+            if (!empty($where)) {
+                $sql .= " where " . join(" && ", $this->a2s($where));
             }
+        } else {
+            $sql .= $where;
         }
-        else{
-            $sql.=$where;
-        }
-        $sql.=$other;
+        $sql .= $other;
         return $sql;
     }
 }
 $Data = new DB('que');
-$rows = $Data->del(['id'=>'57']);
+$rows = $Data->del(['id' => '57']);
 dd($rows);

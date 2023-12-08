@@ -14,7 +14,7 @@ function to($url)
 }
 class DB
 {
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=bquiz";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
     protected $pdo;
     protected $table;
     function __construct($table)
@@ -105,6 +105,4 @@ class DB
         return $sql;
     }
 }
-$Data = new DB('que');
-$rows = $Data->del(['id' => '57']);
-dd($rows);
+$Total = new DB('total');

@@ -80,9 +80,13 @@ class DB
     }
     function del($where)
     {
-        $sql = "delete from $this->table where ";
-        $tmp = $this->a2s($where);
-        $sql .= join(" && ", $tmp);
+        $sql = "delete from `$this->table` where ";
+        if (is_array($where)) {
+            $tmp = $this->a2s($where);
+            $sql .= join(" && ", $tmp);
+        } else if (is_numeric($where)) {
+            $sql .= " `id`='$where'";
+        }
         return $this->pdo->exec($sql);
     }
     private function a2s($where)

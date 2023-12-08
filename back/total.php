@@ -1,7 +1,8 @@
 <!-- 從網站標題修改而來 -->
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">進站總人數管理</p>
-    <form method="post" action="../api/edit_total.php">
+    <form method="post" action="./api/edit_total.php">
+        <!-- 刪除target="back" -->
         <table style="width:50%;margin:auto">
             <tbody>
                 <tr class="yel">

@@ -21,10 +21,12 @@ include_once "./api/db.php";
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
-	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-		<a title="" href="./home_files/home.htm">
-			<div class="ti" style="background:url('use/'); background-size:cover;"></div>
+		<?php
+		$title = $Title->find(['sh' => 1]);
+		?>
+		<a title="<?= $title['text'] ?>" href="index.php">
+			<div class="ti" style="background:url('./img/<?= $title['img'] ?>'); background-size:cover;"></div>
 			<!--標題-->
 		</a>
 		<div id="ms">

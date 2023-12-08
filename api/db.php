@@ -106,3 +106,4 @@ class DB
     }
 }
 $Total = new DB('total');
+$Bottom = new DB('bottom');

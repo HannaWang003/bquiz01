@@ -107,3 +107,4 @@ class DB
 }
 $Total = new DB('total');
 $Bottom = new DB('bottom');
+$Title = new DB('titles');

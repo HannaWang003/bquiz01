@@ -30,6 +30,8 @@ foreach ($_POST['id'] as $key => $id) {
                 $row['pw'] = $_POST['pw'][$key];
                 break;
             case 'menu':
+                $row['href'] = $_POST['href'][$key];
+                $row['sh'] = (in_array($id, $_POST['sh'])) ? 1 : 0;
                 break;
             default:
                 $row['sh'] = (in_array($id, $_POST['sh'])) ? 1 : 0;
@@ -38,4 +40,6 @@ foreach ($_POST['id'] as $key => $id) {
         $DB->save($row);
     }
 }
+// dd($row);
+// exit();
 to("../back.php?do=$table");

@@ -34,7 +34,7 @@ class DB
     {
         switch ($math) {
             case 'count':
-                $sql = "select count(`$col`) from `$this->table` ";
+                $sql = "select count($col) from `$this->table` ";
                 break;
             case 'max':
                 $sql = "select max(`$col`) from `$this->table` ";

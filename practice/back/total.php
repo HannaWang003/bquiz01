@@ -1,12 +1,12 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">進站總人數管理</p>
-    <form method="post" target="back" action="./api/add.php">
+    <form method="post" target="back" action="./api/edit_info.php">
         <table width="80%" style="margin:auto">
             <tbody>
                 <tr class="yel">
                     <td width="50%">進站總人數</td>
                     <td width="50%">
-                        <input type="number" name="total" value="">
+                        <input type="number" name="total" value="<?=$Total->find(1)['total']?>">
                         <input type="hidden" name="table" value="<?=$do?>">
                     </td>
                 </tr>

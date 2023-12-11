@@ -15,14 +15,14 @@
                     // }
                     // exit()
                 ?>
-                    <tr>
-                        <td>
-                            <input type="text" name="acc[]" style="width:95%" value="<?= $row['acc'] ?>">
-                        </td>
-                        <td><input type="password" name="pw[]" value="<?= $row['pw'] ?>"></td>
-                        <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
-                    </tr>
-                    <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+                <tr>
+                    <td>
+                        <input type="text" name="acc[]" style="width:95%" value="<?= $row['acc'] ?>">
+                        <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+                    </td>
+                    <td><input type="password" name="pw[]" value="<?= $row['pw'] ?>"></td>
+                    <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
+                </tr>
                 <?php
                 }
                 ?>
@@ -32,7 +32,8 @@
             <tbody>
                 <tr>
                     <input type="hidden" name="table" value="<?= $do ?>">
-                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/<?= $do ?>.php?table=<?= $do ?>')" value="新增管理者帳號">
+                    <td width="200px"><input type="button"
+                            onclick="op('#cover','#cvr','./modal/<?= $do ?>.php?table=<?= $do ?>')" value="新增管理者帳號">
                     </td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>

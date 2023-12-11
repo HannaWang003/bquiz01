@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">進站總人數管理</p>
-    <form method="post" target="back" action="?do=tii">
+    <form method="post" target="back" action="./api/add.php">
         <table width="80%" style="margin:auto">
             <tbody>
                 <tr class="yel">

@@ -113,3 +113,4 @@ $Total = new DB('total');
 $Bottom = new DB('bottom');
 $Title = new DB('titles');
 $Ad = new DB('ad');
+$Mvim = new DB('mvim');

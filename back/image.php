@@ -10,7 +10,13 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $DB->all();
+                // 分頁
+                $total = $DB->math('count', "id");
+                $div = 3;
+                $pages = ceil($total / $div);
+                $now = $_GET['p'] ?? 1;
+                $starts = ($now - 1) * $div;
+                $rows = $DB->all(" limit $starts, $div");
                 foreach ($rows as $row) {
                     //     dd($rows);
                     // }
@@ -32,6 +38,23 @@
                 ?>
             </tbody>
         </table>
+        <!-- 分頁 -->
+        <div class="cent" style="display:block;">
+            <?php
+            if ($now > 1) {
+                $prev = $now - 1;
+                echo "<a href='?do=$do&p=$prev'> < </a>";
+            }
+            for ($i = 1; $i <= $pages; $i++) {
+                $fontsize = ($now == $i) ? '24px' : '16px';
+                echo "<a href='?do=$do&p=$i' style='font-size:$fontsize'> $i </a>";
+            }
+            if ($now < $pages) {
+                $next = $now + 1;
+                echo "<a href='?do=$do&p=$next'> > </a>";
+            }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

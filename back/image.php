@@ -22,20 +22,17 @@
                     // }
                     // exit()
                 ?>
-                <tr>
-                    <td>
-                        <img src="./img/<?= $row['img'] ?>" alt="" style="width:100px;height:68px">
-                    </td>
-                    <!-- 為了要能使用edit.php, 而增加-->
-                    <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
-                    <!-- <input type="hidden" name="text[<?= $row['id'] ?>]"> -->
-                    <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>"
-                            <?= ($row['sh'] == 1) ? 'checked' : '' ?>></td>
-                    <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
-                    <td><input type="button"
-                            onclick="op('#cover','#cvr','./modal/upload.php?table=<?= $do ?>&id=<?= $row['id'] ?>')"
-                            value="更新圖片"></td>
-                </tr>
+                    <tr>
+                        <td>
+                            <img src="./img/<?= $row['img'] ?>" alt="" style="width:100px;height:68px">
+                        </td>
+                        <!-- 為了要能使用edit.php, 而增加-->
+                        <!-- <input type="hidden" name="id[]" value="<?= $row['id'] ?>"> -->
+                        <input type="hidden" name="text[<?= $row['id'] ?>]">
+                        <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?= ($row['sh'] == 1) ? 'checked' : '' ?>></td>
+                        <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
+                        <td><input type="button" onclick="op('#cover','#cvr','./modal/upload.php?table=<?= $do ?>&id=<?= $row['id'] ?>')" value="更新圖片"></td>
+                    </tr>
                 <?php
                 }
                 ?>
@@ -62,8 +59,7 @@
             <tbody>
                 <tr>
                     <input type="hidden" name="table" value="<?= $do ?>">
-                    <td width="200px"><input type="button"
-                            onclick="op('#cover','#cvr','./modal/<?= $do ?>.php?table=<?= $do ?>')" value="新增校園印象圖片">
+                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/<?= $do ?>.php?table=<?= $do ?>')" value="新增校園印象圖片">
                     </td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>

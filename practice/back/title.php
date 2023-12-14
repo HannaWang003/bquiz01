@@ -21,12 +21,13 @@ foreach($rows as $row){
                     <td width="45%"><img src="./img/<?=$row['img']?>" alt="" width=300px height=30px></td>
                     <td width="23%">
                         <input type="text" name="text[]" value="<?=$row['text']?>">
-                        <input type="hidden" name="id[]" value="<?=$row['id']?>">
                     </td>
                     <td width="7%"><input type="radio" name="sh" value="<?=$row['id']?>" <?=($row['sh']==1)?"checked":""?>></td>
                     <td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id']?>">刪除</td>
                     <td></td>
                 </tr>
+                <!-- 要放在foreach裡 -->
+                <input type="hidden" name="id[]" value="<?=$row['id']?>">
                 <?php
                 }
                 ?>
@@ -40,6 +41,7 @@ foreach($rows as $row){
                 </tr>
             </tbody>
         </table>
+        <!-- 只要出現一次的可以放在foreach外 -->
 <input type="hidden" name="table" value="<?=$do?>">
     </form>
 </div>

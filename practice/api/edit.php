@@ -27,7 +27,7 @@ if(isset($row['text'])){
             break;
         default;
     }
-$DB->save($row);
 }
+$DB->save($row);
     }
 ?>

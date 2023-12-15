@@ -1,3 +1,6 @@
+<?php
+include_once "../api/db.php";
+?>
 <h3>編輯次選單</h3>
 <hr>
 <form action="./api/add_submenu.php" method="post" enctype="multipart/form-data">

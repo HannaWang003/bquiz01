@@ -4,7 +4,7 @@ include_once "../api/db.php";
 <h3>編輯次選單</h3>
 <hr>
 <form action="./api/add_submenu.php" method="post" enctype="multipart/form-data">
-    <table class="cent">
+    <table class="cent" id="sub">
         <tr>
             <td>次選單名稱</td>
             <td>次選單連結網址</td>
@@ -33,9 +33,9 @@ include_once "../api/db.php";
 <script>
 function more() {
     let item = `<tr>
-    <td><input type="text" name="text[]" value=""></td>
-    <td><input type="text" name="href[]" value=""></td>
+    <td><input type="text" name="add_text[]" value=""></td>
+    <td><input type="text" name="add_href[]" value=""></td>
     </tr>`;
-    $("#xxx").append(item);
+    $("#sub").append(item);
 }
 </script>

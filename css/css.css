@@ -139,3 +139,10 @@ button:focus {
   cursor: pointer;
   text-decoration: none;
 }
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}

@@ -24,8 +24,8 @@ include_once "./api/db.php";
     </div>
     <div id="main">
         <?php
-		$title = $Title->find(['sh' => 1]);
-		?>
+        $title = $Title->find(['sh' => 1]);
+        ?>
         <a title="<?= $title['text'] ?>" href="index.php">
             <div class="ti" style="background:url('./img/<?= $title['img'] ?>'); background-size:cover;"></div>
             <!--標題-->
@@ -44,32 +44,15 @@ include_once "./api/db.php";
             <!-- main.php-->
             <!-- login.php -->
             <?php
-			$do = $_GET['do'] ?? "main";
-			$file = "./front/{$do}.php";
-			if (file_exists($file)) {
-				include $file;
-			} else {
-				include "./front/main.php";
-			}
-			?>
-            <div id="alt"
-                style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
-            </div>
-            <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
-            </script>
+            $do = $_GET['do'] ?? "main";
+            $file = "./front/{$do}.php";
+            if (file_exists($file)) {
+                include $file;
+            } else {
+                include "./front/main.php";
+            }
+            ?>
+            <!-- 刪除跟news.php衝突的程式碼 -->
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"

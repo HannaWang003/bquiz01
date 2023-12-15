@@ -10,7 +10,7 @@
                 </tr>
                 <?php
                 // 分頁
-                $total = $DB->math('count', "id");
+                $total = $DB->count();
                 $div = 5;
                 $pages = ceil($total / $div);
                 $now = $_GET['p'] ?? 1;

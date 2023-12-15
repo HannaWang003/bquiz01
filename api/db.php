@@ -30,24 +30,29 @@ class DB
             return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    function math($math, $col, $where = '', $other = '')
+    function count($where = '', $other = '')
     {
-        switch ($math) {
-            case 'count':
-                $sql = "select count(`$col`) from `$this->table` ";
-                break;
-            case 'max':
-                $sql = "select max(`$col`) from `$this->table` ";
-                break;
-            case 'min':
-                $sql = "select min(`$col`) from `$this->table` ";
-                break;
-            case 'avg':
-                $sql = "select avg(`$col`) from `$this->table` ";
-                break;
-        }
+        $sql = "select count(*) from `$this->table` ";
         $sql = $this->sql_all($sql, $where, $other);
+        return  $this->pdo->query($sql)->fetchColumn();
+    }
+    private function math($math, $col, $array = '', $other = '')
+    {
+        $sql = "select $math(`$col`)  from `$this->table` ";
+        $sql = $this->sql_all($sql, $array, $other);
         return $this->pdo->query($sql)->fetchColumn();
+    }
+    function sum($col = '', $where = '', $other = '')
+    {
+        return  $this->math('sum', $col, $where, $other);
+    }
+    function max($col, $where = '', $other = '')
+    {
+        return  $this->math('max', $col, $where, $other);
+    }
+    function min($col, $where = '', $other = '')
+    {
+        return  $this->math('min', $col, $where, $other);
     }
     function find($where)
     {

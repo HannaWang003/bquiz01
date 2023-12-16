@@ -17,7 +17,7 @@ foreach($rows as $row){
                 ?>
                 <tr>
                     <td>
-                        <input type="text" name="text[]" value="<?=$row['text']?>">
+                        <input type="text" name="text[]" value="<?=$row['text']?>" style="width:90%">
                     </td>
                     <td><input type="radio" name="sh[]" value="<?=$row['id']?>" <?=($row['sh']==1)?"checked":""?>></td>
                     <td><input type="checkbox" name="del[]" value="<?=$row['id']?>">刪除</td>

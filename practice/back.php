@@ -24,7 +24,10 @@ include_once "./api/db.php";
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="?">
-			<div class="ti" style="background:url('use/'); background-size:cover;"></div><!--標題-->
+		<?php
+$img = $Title->find(['sh'=>1])['img'];
+		?>
+			<div class="ti" style="background:url('./img/<?=$img?>'); background-size:cover;"></div><!--標題-->
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">

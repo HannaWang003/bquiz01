@@ -18,9 +18,11 @@ include_once "./api/db.php";
         <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
     </div>
 </div>
-<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-    	<a title="" href="./home_files/home.htm"><div class="ti" style="background:url('use/'); background-size:cover;"></div><!--標題--></a>
+		<?php
+$img = $Title->find(['sh'=>1])['img'];
+		?>
+    	<a title="" href="./home_files/home.htm"><div class="ti" style="background:url('./img/<?=$img?>'); background-size:cover;"></div><!--標題--></a>
         	<div id="ms">
              	<div id="lf" style="float:left;">
             		<div id="menuput" class="dbor">

@@ -27,7 +27,7 @@ foreach($rows as $row){
                     <td>
                         <textarea name="text[]" id="" cols="80" rows="10"><?=$row['text']?></textarea>
                     </td>
-                    <td><input type="radio" name="sh[]" value="<?=$row['id']?>" <?=($row['sh']==1)?"checked":""?>></td>
+                    <td><input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh']==1)?"checked":""?>></td>
                     <td><input type="checkbox" name="del[]" value="<?=$row['id']?>">刪除</td>
                 </tr>
                 <!-- 要放在foreach裡 -->
@@ -65,7 +65,7 @@ echo ($next <= $pages)?"<a href='?do=$do&p=$next'> > </a>":"";
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
-                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/<?=$do?>.php?table=<?=$do?>')" value="新增動態文字廣告"></td>
+                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/<?=$do?>.php?table=<?=$do?>')" value="新增最新消息資料"></td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>
             </tbody>

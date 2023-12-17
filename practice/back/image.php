@@ -1,6 +1,6 @@
 <?php
 $DB = ${ucfirst($do)};
-$rows = $DB->all();
+// $rows = $DB->all();
 ?>
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">校園映像資料管理</p>
@@ -14,6 +14,12 @@ $rows = $DB->all();
                     <td></td>
                 </tr>
                 <?php
+                $total = $DB->count();
+                $div = 5;
+                $pages = ceil($total/$div);
+                $now = ($_GET['p'])??1;
+                $start = ($now-1)*$div;
+                $rows = $DB->all(" limit $start,$div");
 foreach($rows as $row){
                 ?>
                 <tr>
@@ -31,6 +37,22 @@ foreach($rows as $row){
                 ?>
             </tbody>
         </table>
+        <div class="cent">
+            <?php
+$prev = $now-1;
+echo ($prev>=1)? "<a href='?do=$do&&p=$prev'> < </a>" : " ";
+echo "&nbsp;&nbsp;";
+
+for($i=1;$i<=$pages;$i++){
+    $fontsize = ($i==$now)? "24px" : "16px";
+    echo "<a href='?do=$do&&p=$i' style='font-size:$fontsize'>$i</a>";
+}
+
+echo "&nbsp;&nbsp;";
+$next = $now+1;
+echo ($next<=$pages)? "<a href='?do=$do&&p=$next'> > </a>" : " ";
+?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

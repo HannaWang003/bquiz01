@@ -17,7 +17,7 @@ $DB->save($row);
         }
     }
 }
-else{
+if(isset($_POST['add_text'])){
     foreach($_POST['add_text'] as $idx=>$text){
         if($text!=''){
     $data=[];

@@ -3,12 +3,12 @@ $DB = ${ucfirst($do)};
 $rows = $DB->all();
 ?>
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-    <p class="t cent botli">動畫圖片管理</p>
+    <p class="t cent botli">校園映像資料管理</p>
     <form method="post" action="./api/edit.php">
         <table width="100%">
             <tbody class="cent">
                 <tr class="yel">
-                    <td width="45%">動畫圖片</td>
+                    <td width="45%">校園映像資料圖片</td>
                     <td width="7%">顯示</td>
                     <td width="7%">刪除</td>
                     <td></td>
@@ -17,7 +17,7 @@ $rows = $DB->all();
 foreach($rows as $row){
                 ?>
                 <tr>
-                    <td width="70%"><img src="./img/<?=$row['img']?>" alt="" width=150px height=100px></td>
+                    <td width="70%"><img src="./img/<?=$row['img']?>" alt="" width=100px height=68px></td>
                     <td width="10%"><input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=($row['sh']==1)?"checked":""?>></td>
                     <td width="10%"><input type="checkbox" name="del[]" value="<?=$row['id']?>">刪除</td>
                     <td>

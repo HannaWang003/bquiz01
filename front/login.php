@@ -1,4 +1,7 @@
             <?php
+            if (isset($_SESSION['acc'])) {
+                to("back.php");
+            }
             if (isset($_GET['err'])) {
                 echo "<script>alert('{$_GET['err']}')</script>";
             }

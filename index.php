@@ -61,18 +61,18 @@ include_once "./api/db.php";
                     <span class="t botli">校園映象區</span>
                     <!-- #ssaa區 -->
                     <div class="cent">
-                        <div class="cent" onclick="pp(1)"><img src="./icons/up.jpg" alt=""></div>
+                        <div class="cent" onclick="pp(1)"><img src="./icons/up.jpg" style="margin:5%"></div>
                         <?php
-                    $imgs = $Image->all(['sh' => 1]);
-                    foreach ($imgs as $idx => $img) {
-                    ?>
+                        $imgs = $Image->all(['sh' => 1]);
+                        foreach ($imgs as $idx => $img) {
+                        ?>
                         <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>"
-                                style="width:150px;height:103px">
+                                style="width:150px;height:103px;border:5px solid orange;margin:2%">
                         </div>
                         <?php
-                    }
-                    ?>
-                        <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" alt=""></div>
+                        }
+                        ?>
+                        <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" style="margin:2%"></div>
                     </div>
                     <script>
                     var nowpage = 1,
@@ -92,7 +92,7 @@ include_once "./api/db.php";
                             $("#ssaa" + t).show()
                         }
                     }
-                    pp(2)
+                    pp(1)
                     </script>
                 </div>
             </div>

@@ -1,8 +1,7 @@
 <?php
 include_once "./api/db.php";
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -39,53 +38,71 @@ include_once "./api/db.php";
                     $mainmu = $Menu->all(['sh' => 1, 'menu_id' => 0]);
                     foreach ($mainmu as $main) {
                     ?>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
-                        <div class="mainmu">
-                            <?=$main['text']?> </div>
-                    </a>
+                        <a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $main['href'] ?>">
+                            <div class="mainmu">
+                                <?= $main['text'] ?>
+                                <?php
+                                if ($Menu->count(['menu_id' => $main['id']]) > 0) {
+                                    $subs = $Menu->all(['menu_id' => $main['id']]);
+                                    echo "<div class='mw'>";
+                                    foreach ($subs as $sub) {
+                                ?>
+
+                                        <a href="<?= $sub['href'] ?>">
+                                            <div class="mainmu2"><?= $sub['text'] ?></div>
+                                        </a>
+
+                                    <?php
+                                    }
+                                    ?>
+                            </div>
+                        <?php
+                                }
+                        ?>
+
+                </div>
+                </a>
+            <?php
+                    }
+            ?>
+            </div>
+            <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
+                <span class="t">進站總人數 :
+                    <?= $Total->find(1)['total'] ?></span>
+            </div>
+        </div>
+        <!-- main.php-->
+        <!-- login.php -->
+        <?php
+        $do = $_GET['do'] ?? "main";
+        $file = "./front/{$do}.php";
+        if (file_exists($file)) {
+            include $file;
+        } else {
+            include "./front/main.php";
+        }
+        ?>
+        <!-- 刪除跟news.php衝突的程式碼 -->
+        <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
+            <!--右邊-->
+            <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+            <div style="width:89%; height:480px;" class="dbor">
+                <span class="t botli">校園映象區</span>
+                <!-- #ssaa區 -->
+                <div class="cent">
+                    <div class="cent" onclick="pp(1)"><img src="./icons/up.jpg" style="margin:5%"></div>
+                    <?php
+                    $imgs = $Image->all(['sh' => 1]);
+                    foreach ($imgs as $idx => $img) {
+                    ?>
+                        <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>" style="width:150px;height:103px;border:5px solid orange;margin:2%">
+                        </div>
                     <?php
                     }
                     ?>
+                    <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" style="margin:2%"></div>
                 </div>
-                <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :
-                        <?= $Total->find(1)['total'] ?></span>
-                </div>
-            </div>
-            <!-- main.php-->
-            <!-- login.php -->
-            <?php
-            $do = $_GET['do'] ?? "main";
-            $file = "./front/{$do}.php";
-            if (file_exists($file)) {
-                include $file;
-            } else {
-                include "./front/main.php";
-            }
-            ?>
-            <!-- 刪除跟news.php衝突的程式碼 -->
-            <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
-                <!--右邊-->
-                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-                    onclick="lo('?do=login')">管理登入</button>
-                <div style="width:89%; height:480px;" class="dbor">
-                    <span class="t botli">校園映象區</span>
-                    <!-- #ssaa區 -->
-                    <div class="cent">
-                        <div class="cent" onclick="pp(1)"><img src="./icons/up.jpg" style="margin:5%"></div>
-                        <?php
-                        $imgs = $Image->all(['sh' => 1]);
-                        foreach ($imgs as $idx => $img) {
-                        ?>
-                        <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>"
-                                style="width:150px;height:103px;border:5px solid orange;margin:2%">
-                        </div>
-                        <?php
-                        }
-                        ?>
-                        <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" style="margin:2%"></div>
-                    </div>
-                    <script>
+                <script>
                     var nowpage = 1,
                         num = <?= $Image->count(['sh' => 1]); ?>;
 
@@ -104,15 +121,14 @@ include_once "./api/db.php";
                         }
                     }
                     pp(1)
-                    </script>
-                </div>
+                </script>
             </div>
         </div>
-        <div style="clear:both;"></div>
-        <div
-            style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-            <span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom'] ?></span>
-        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
+        <span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom'] ?></span>
+    </div>
     </div>
 
 </body>

@@ -5,5 +5,5 @@ if ($check > 0) {
     $_SESSION['acc'] = $_POST['acc'];
     to("../back.php");
 } else {
-    to("index.php?do=login&err=登入錯誤");
+    to("../index.php?do=login&err=登入錯誤");
 }

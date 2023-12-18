@@ -59,16 +59,31 @@ include_once "./api/db.php";
                     onclick="lo('?do=login')">管理登入</button>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
+                    <!-- #ssaa區 -->
+                    <div class="cent">
+                        <div class="cent" onclick="pp(1)"><img src="./icons/up.jpg" alt=""></div>
+                        <?php
+                    $imgs = $Image->all(['sh' => 1]);
+                    foreach ($imgs as $idx => $img) {
+                    ?>
+                        <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>"
+                                style="width:150px;height:103px">
+                        </div>
+                        <?php
+                    }
+                    ?>
+                        <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" alt=""></div>
+                    </div>
                     <script>
-                    var nowpage = 0,
-                        num = 0;
+                    var nowpage = 1,
+                        num = <?= $Image->count(['sh' => 1]); ?>;
 
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
-                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                        if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
                             nowpage++;
                         }
                         $(".im").hide()
@@ -77,7 +92,7 @@ include_once "./api/db.php";
                             $("#ssaa" + t).show()
                         }
                     }
-                    pp(1)
+                    pp(2)
                     </script>
                 </div>
             </div>

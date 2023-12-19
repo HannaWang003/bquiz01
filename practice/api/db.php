@@ -78,7 +78,7 @@ return $tmp;
         if(isset($array['id'])){
             $sql="update `$this->table` set ";
             $sql.=join(" , ",$this->a2s($array));
-            $sql.=" where `id`={$array['id']}";
+            $sql.=" where `id`='{$array['id']}'";
         }
         else{
             $sql = "insert into `$this->table` ";

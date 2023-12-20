@@ -99,6 +99,9 @@ return $tmp;
         }
         return $this->pdo->exec($sql);
     }
+    function q($sql){
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 $Total = new DB('total');
 $Bottom = new DB('bottom');
@@ -115,6 +118,11 @@ if (isset($_GET['do'])) {
     $DB = ${ucfirst($_GET['do'])};
 } else {
     $DB = $Title;
+}
+//用來判斷進站人數要不要增加
+if(!isset($_SESSION['visited'])){
+    $Total->q("update `total` set `total`=`total`+1 where `id`=1");
+    $_SESSION['visited']=1;
 }
 
 ?>

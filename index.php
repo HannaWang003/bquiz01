@@ -1,8 +1,8 @@
 <?php
 include_once "./api/db.php";
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- bootstrap -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -39,31 +39,31 @@ include_once "./api/db.php";
                     $mainmu = $Menu->all(['sh' => 1, 'menu_id' => 0]);
                     foreach ($mainmu as $main) {
                     ?>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $main['href'] ?>">
-                        <div class="mainmu">
-                            <?= $main['text'] ?>
-                            <?php
+                        <a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $main['href'] ?>">
+                            <div class="mainmu">
+                                <?= $main['text'] ?>
+                                <?php
                                 if ($Menu->count(['menu_id' => $main['id']]) > 0) {
                                     $subs = $Menu->all(['menu_id' => $main['id']]);
                                     echo "<div class='mw'>";
                                     foreach ($subs as $sub) {
                                 ?>
 
-                            <a href="<?= $sub['href'] ?>">
-                                <div class="mainmu2"><?= $sub['text'] ?></div>
-                            </a>
+                                        <a href="<?= $sub['href'] ?>">
+                                            <div class="mainmu2"><?= $sub['text'] ?></div>
+                                        </a>
 
-                            <?php
+                                    <?php
                                     }
                                     ?>
-                        </div>
+                            </div>
                         <?php
                                 }
                         ?>
 
                 </div>
                 </a>
-                <?php
+            <?php
                     }
             ?>
             </div>
@@ -87,19 +87,17 @@ include_once "./api/db.php";
         <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
             <!--右邊-->
             <?php
-            if(isset($_SESSION['acc'])){
+            if (isset($_SESSION['acc'])) {
             ?>
-            <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-                onclick="lo('back.php')">返回管理</button>
+                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('back.php')">返回管理</button>
             <?php
-}else{
-          ?>
+            } else {
+            ?>
 
-            <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-                onclick="lo('?do=login')">管理登入</button>
+                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
             <?php
-}
-                ?>
+            }
+            ?>
             <div style="width:89%; height:480px;" class="dbor">
                 <span class="t botli">校園映象區</span>
                 <!-- #ssaa區 -->
@@ -109,40 +107,38 @@ include_once "./api/db.php";
                     $imgs = $Image->all(['sh' => 1]);
                     foreach ($imgs as $idx => $img) {
                     ?>
-                    <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>"
-                            style="width:150px;height:103px;border:5px solid orange;margin:2%">
-                    </div>
+                        <div id='ssaa<?= $idx ?>' class='im'><img src="./img/<?= $img['img'] ?>" style="width:150px;height:103px;border:5px solid orange;margin:2%">
+                        </div>
                     <?php
                     }
                     ?>
                     <div class="cent" onclick="pp(2)"><img src="./icons/dn.jpg" style="margin:2%"></div>
                 </div>
                 <script>
-                var nowpage = 1,
-                    num = <?= $Image->count(['sh' => 1]); ?>;
+                    var nowpage = 1,
+                        num = <?= $Image->count(['sh' => 1]); ?>;
 
-                function pp(x) {
-                    var s, t;
-                    if (x == 1 && nowpage - 1 >= 0) {
-                        nowpage--;
+                    function pp(x) {
+                        var s, t;
+                        if (x == 1 && nowpage - 1 >= 0) {
+                            nowpage--;
+                        }
+                        if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
+                            nowpage++;
+                        }
+                        $(".im").hide()
+                        for (s = 0; s <= 2; s++) {
+                            t = s * 1 + nowpage * 1;
+                            $("#ssaa" + t).show()
+                        }
                     }
-                    if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
-                        nowpage++;
-                    }
-                    $(".im").hide()
-                    for (s = 0; s <= 2; s++) {
-                        t = s * 1 + nowpage * 1;
-                        $("#ssaa" + t).show()
-                    }
-                }
-                pp(1)
+                    pp(1)
                 </script>
             </div>
         </div>
     </div>
     <div style="clear:both;"></div>
-    <div
-        style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
+    <div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
         <span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom'] ?></span>
     </div>
     </div>

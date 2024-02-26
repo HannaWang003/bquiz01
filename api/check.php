@@ -1,6 +1,8 @@
 <?php
 include_once "db.php";
-$check = $Admin->count(['acc' => $_POST['acc'], 'pw' => $_POST['pw']]);
+$acc = htmlspecialchars($_POST['acc']);
+$pw = htmlspecialchars($_POST['pw']);
+$check = $Admin->count(['acc' => $acc, 'pw' => $pw]);
 if ($check > 0) {
     $_SESSION['acc'] = $_POST['acc'];
     to("../back.php");

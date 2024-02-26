@@ -98,6 +98,7 @@ class DB
     private function a2s($where)
     {
         foreach ($where as $key => $val) {
+            $val = $this->check($val);
             $tmp[] = "`$key`='$val'";
         }
         return $tmp;
@@ -117,6 +118,12 @@ class DB
     function q($sql)
     {
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // 檢查及處理所有的參數
+    function check($arg)
+    {
+        $arg = htmlspecialchars($arg);
+        return;
     }
 }
 $Total = new DB('total');

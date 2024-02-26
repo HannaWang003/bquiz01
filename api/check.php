@@ -1,8 +1,9 @@
 <?php
 include_once "db.php";
 //' OR 1=1;  <=SQL注入
-$acc = htmlspecialchars($_POST['acc']);
-$pw = htmlspecialchars($_POST['pw']);
+//把檢查方式寫到db檔，並放入count funciton
+// $acc = htmlspecialchars($_POST['acc']);
+// $pw = htmlspecialchars($_POST['pw']);
 $check = $Admin->count(['acc' => $acc, 'pw' => $pw]);
 if ($check > 0) {
     $_SESSION['acc'] = $acc;

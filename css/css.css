@@ -70,7 +70,7 @@ body
 {
 	position:relative;
 	border-radius:10px;
-	background:url(icon/menu.fw.png) center no-repeat;
+	background:url(../icon/menu.fw.png) center no-repeat;
 	background-size:cover;
 	line-height:30px;
 	padding:2px 10px 2px 10px;
@@ -78,7 +78,7 @@ body
 }
 .mainmu:hover
 {
-	background:url(icon/menu2.fw.png) center no-repeat;
+	background:url(../icon/menu2.fw.png) center no-repeat;
 	background-size:cover;
 }
 .mainmu2

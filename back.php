@@ -9,12 +9,14 @@
 </head>
 
 <body>
+	<!-- 新增及更新用 -->
 <div id="cover" style="display:none; ">
 	<div id="coverr">
     	<a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl(&#39;#cover&#39;)">X</a>
         <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
     </div>
 </div>
+	<!-- /新增及更新用 -->
 <iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
     	<a title="" href="?"><div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題--></a>

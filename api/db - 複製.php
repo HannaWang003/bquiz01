@@ -14,7 +14,7 @@ function to($url)
 }
 class DB
 {
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
     protected $pdo;
     protected $table;
     function __construct($table)
@@ -34,7 +34,6 @@ class DB
     {
         $sql = "select count(*) from `$this->table` ";
         $sql = $this->sql_all($sql, $where, $other);
-        // echo $sql;
         return  $this->pdo->query($sql)->fetchColumn();
     }
     private function math($math, $col, $array = '', $other = '')
@@ -98,7 +97,6 @@ class DB
     private function a2s($where)
     {
         foreach ($where as $key => $val) {
-            $val = $this->check($val);
             $tmp[] = "`$key`='$val'";
         }
         return $tmp;
@@ -118,12 +116,6 @@ class DB
     function q($sql)
     {
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
-    // 檢查及處理所有的參數
-    function check($arg)
-    {
-        $arg = htmlspecialchars($arg);
-        return $arg;
     }
 }
 $Total = new DB('total');

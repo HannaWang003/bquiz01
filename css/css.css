@@ -121,7 +121,7 @@ button:active {
 }
 input[type="text"],
 input[type="password"] {
-  width: 80%;
+  width: 150px;
 }
 input:focus,
 button:focus {

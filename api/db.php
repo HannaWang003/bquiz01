@@ -94,7 +94,7 @@ class DB
         if (is_array($id)) {
             $sql .= " where " . join(" && ", $this->a2s($id));
         } elseif (is_numeric($id)) {
-            $sql .= " wehre `id`='$id'";
+            $sql .= " where `id`='{$id}'";
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -104,7 +104,7 @@ class DB
         if (is_array($id)) {
             $sql .= " where " . join(" && ", $this->a2s($id));
         } elseif (is_numeric($id)) {
-            $sql .= " wehre `id`='$id'";
+            $sql .= " where `id`='{$id}'";
         }
         return $this->pdo->exec($sql);
     }

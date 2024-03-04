@@ -10,11 +10,14 @@
         $rows = $Admin->all();
         foreach ($rows as $row) {
         ?>
-            <tr>
-                <td><input type="text" name="acc[]" value="<?= $row['acc'] ?>"></td>
-                <td><input type="text" name="pw[]" value="<?= $row['pw'] ?>"></td>
-                <td class='ct'><input type="checkbox" name="del[]" vale="<?= $row['id'] ?>"></td>
-            </tr>
+        <tr>
+            <td><input type="text" name="acc[]" value="<?= $row['acc'] ?>"></td>
+            <td><input type="text" name="pw[]" value="<?= $row['pw'] ?>"></td>
+            <td class='ct'>
+                <input type="checkbox" name="del[]" value="<?= $row['id'] ?>">
+                <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+            </td>
+        </tr>
 
         <?php
         }

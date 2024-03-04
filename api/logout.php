@@ -1,4 +1,4 @@
 <?php
 session_start();
 unset($_SESSION['mag']);
-header("location:../index.php");
+header("location:../index.php?do=login");

@@ -74,14 +74,14 @@ body {
 .mainmu2 {
   position: relative;
   border-radius: 10px;
-  background: url(icon/menu3.fw.png) center no-repeat;
+  background: url(../icon/menu3.fw.png) center no-repeat;
   background-size: 100% 100%;
   line-height: 30px;
   padding: 2px 10px 2px 10px;
   margin: 7px 1px 7px 1px;
 }
 .mainmu2:hover {
-  background: url(icon/menu4.fw.png) center no-repeat;
+  background: url(../icon/menu4.fw.png) center no-repeat;
   background-size: cover;
 }
 #lf {
@@ -121,7 +121,7 @@ button:active {
 }
 input[type="text"],
 input[type="password"] {
-  width: 150px;
+  width: 80%;
 }
 input:focus,
 button:focus {
@@ -144,4 +144,19 @@ button:focus {
 }
 .red {
   color: red;
+}
+.bgog {
+  background: orange;
+}
+.w80 {
+  width: 80%;
+}
+.w90 {
+  width: 90%;
+}
+.all {
+  width: 100%;
+}
+.m-auto {
+  margin: auto;
 }

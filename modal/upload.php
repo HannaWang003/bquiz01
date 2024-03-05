@@ -8,7 +8,13 @@ if(isset($_GET['id'])){
 <hr>
 <form action="../api/upload.php" method="post" enctype="multipart/form-data">
 <div>標題區圖片:    <input type="file" name="img"></div>
-<div>標題區替代文字:    <input type="text" name="text"></div>
+<?php
+if(!isset($_GET['id'])){
+    echo "<div>標題區替代文字:<input type='text' name='text'></div>";
+}else{
+    echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+}
+?>
 <div>
     <input type="submit" value="<?=(isset($_GET['id']))?"更新":"新增"?>">
     <input type="reset" value="重置">

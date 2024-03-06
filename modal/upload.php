@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 }
 ?>
 <hr>
-<form action="../api/upload.php" method="post" enctype="multipart/form-data">
+<form action="../api/upload.php?do=title" method="post" enctype="multipart/form-data">
 <div>標題區圖片:    <input type="file" name="img"></div>
 <?php
 if(!isset($_GET['id'])){

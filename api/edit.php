@@ -13,7 +13,10 @@ foreach($_POST['id'] as $idx=>$id){
         }else{
             $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
         }
-        $row['text']=$_POST['text'][$idx];
+        if($do!='mvim'){
+
+            $row['text']=$_POST['text'][$idx];
+        }
         $DB->save($row);
         }
     }

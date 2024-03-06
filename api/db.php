@@ -117,3 +117,13 @@ $Admin = new DB('admin');
 $Title = new DB('titles');
 $Ad=new DB('ad');
 $Mvim=new DB('mvim');
+$Image=new DB('image');
+$Total=new DB('total');
+
+if(!isset($_SESSION['visited'])){
+$row = $Total->find(1);
+$row['total']++;
+$Total->save($row);
+
+    $_SESSION['visited']=1;
+}

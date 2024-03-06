@@ -115,3 +115,4 @@ class DB
 }
 $Admin = new DB('admin');
 $Title = new DB('titles');
+$Ad=new DB('ad');

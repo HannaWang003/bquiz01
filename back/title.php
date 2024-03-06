@@ -5,7 +5,7 @@
     }
 </style>
 <p class="t cent botli">網站標題管理</p>
-        <form method="post"  action="./api/edit_title.php">
+        <form method="post"  action="./api/edit.php?do=title">
     <table width="100%">
     	<tbody><tr class="yel">
         	<td width="45%">網站標題</td>

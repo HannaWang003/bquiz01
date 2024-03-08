@@ -17,7 +17,8 @@ class DB
 {
     //3 protected
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    // protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
     protected $pdo;
     //construct
     function __construct($table)
@@ -115,15 +116,16 @@ class DB
 }
 $Admin = new DB('admin');
 $Title = new DB('titles');
-$Ad=new DB('ad');
-$Mvim=new DB('mvim');
-$Image=new DB('image');
-$Total=new DB('total');
+$Ad = new DB('ad');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+$Total = new DB('total');
+$Bottom = new DB('bottom');
 
-if(!isset($_SESSION['visited'])){
-$row = $Total->find(1);
-$row['total']++;
-$Total->save($row);
+if (!isset($_SESSION['visited'])) {
+    $row = $Total->find(1);
+    $row['total']++;
+    $Total->save($row);
 
-    $_SESSION['visited']=1;
+    $_SESSION['visited'] = 1;
 }

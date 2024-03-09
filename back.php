@@ -90,6 +90,7 @@ $img = $Title->find(['sh'=>1])['img'];
             </div>
             <div class="di"
                 style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+                <div>
                 <!--正中央-->
                 <table width="100%">
                     <tbody>

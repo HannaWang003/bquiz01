@@ -96,7 +96,7 @@ class DB{
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-$AD=new DB('ad');
+$Ad=new DB('ad');
 $Admin=new DB('admin');
 $Bottom=new DB('bottom');
 $Image=new DB('image');

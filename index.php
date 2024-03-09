@@ -35,7 +35,64 @@ $img = $Title->find(['sh'=>1])['img'];
             <div id="lf" style="float:left;">
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
+                    <style>
+                        .menu{
+                            background:url('./icon/menu.fw.png');
+                            position:relative;
+                            z-index:99;
+                        }
+                        .menu:hover{
+                            background:url('./icon/menu2.fw.png');
+                        }
+                        .sub{
+                            background:url('./icon/menu3.fw.png');
+                        }
+                        .sub:hover{
+                            background:url('./icon/menu4.fw.png'); 
+                        }
+                        .submenu{
+                            display:none;
+                        }
+                    </style>
                     <span class="t botli">主選單區</span>
+                    <?php
+$rows = $Menu->all(['sh'=>1,'menu_id'=>0]);
+foreach($rows as $row){
+    ?>
+<div style="position:relative;">
+<a href="<?=$row['href']?>"><div class='menu' data-id="<?=$row['id']?>" style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;"><?=$row['text']?></div></a>
+<div style="position:absolute;top:20px;left:100px;z-index:100;" class="submenu submenu<?=$row['id']?>" data-id="<?=$row['id']?>">
+<?php
+$subs = $Menu->all(['sh'=>1,'menu_id'=>$row['id']]);
+foreach($subs as $sub){
+    ?>
+<div class='sub' style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;"><?=$sub['text']?></div>
+    <?php
+}
+?>
+</div>
+</div>
+<script>
+    $('.menu').hover(function(){
+        let id=$(this).data('id');
+        $('.submenu').hide();
+        $('.submenu'+id).show();
+    },
+    function(){
+        $('.submenu').hide();
+    })
+    $('.submenu').hover(function(){
+let id=$(this).data('id');
+$('.submenu'+id).show();
+    },
+    function(){
+        $('.submenu').hide();
+    })
+</script>
+    <?php
+}
+
+?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :

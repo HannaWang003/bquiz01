@@ -114,16 +114,6 @@ class DB
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-function p($DB,$div,$nowpage){
-    $total=$DB->count();
-    $pages = ceil($total/$div);
-    $now = ($nowpage)??1;
-    $start=($now-1)*$div;
-    $rows = $DB->all("limit $start,$div");
-    $res = ['now'=>$now,'pages'=>$pages,'start'=>$start,'rows'=>$rows];
-    return $res;
-}
-
 $Admin = new DB('admin');
 $Title = new DB('titles');
 $Ad = new DB('ad');
@@ -132,6 +122,7 @@ $Image = new DB('image');
 $Total = new DB('total');
 $Bottom = new DB('bottom');
 $News = new DB('news');
+$Menu = new DB('menu');
 
 if (!isset($_SESSION['visited'])) {
     $row = $Total->find(1);

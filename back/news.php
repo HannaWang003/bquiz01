@@ -15,8 +15,12 @@
                     <?php
                     $do=$_GET['do'];
                     $DB=${ucfirst($do)};
-                    $result =p($DB,4,($_GET['p'])??1);
-$rows = $result['rows'];
+                    $total=$DB->count();
+                    $div=4;
+                    $pages = ceil($total/$div);
+                    $now = ($_GET['p'])??1;
+                    $start=($now-1)*$div;
+                    $rows = $DB->all("limit $start,$div");
 foreach($rows as $row){
 ?>
 <tr>
@@ -33,17 +37,17 @@ foreach($rows as $row){
     </tbody></table>
     <div class="ct">
         <?php
-        if($result['now']-1>0){
-            $pre=$result['now']-1;
+        if($now-1>0){
+            $pre=$now-1;
             echo "<a href='?do=$do&p=$pre'> < </a>";
         }
-for($i=1;$i<=$result['pages'];$i++){
+for($i=1;$i<=$pages;$i++){
             ?>
     <a href="?do=<?=$do?>&p=<?=$i?>"><?=$i?></a>
 <?php
 }
-if($result['now']+1<=$result['pages']){
-    $next=$result['now']+1;
+if($now+1<=$pages){
+    $next=$now+1;
     echo "<a href='?do=$do&p=$next'> > </a>";
 }
 ?>

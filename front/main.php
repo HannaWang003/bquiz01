@@ -42,9 +42,11 @@ $news = $News->all(['sh'=>1],"limit 5");
 foreach($news as $new){
 	echo "<li>";
 	echo mb_substr($new['text'],0,20);
+	echo "<div class='all' style='display:none'>";
+	echo $new['text'];
+	echo "</div>";
 	echo "</li>";
 }
-
 ?>
 
                             	                            </ul>

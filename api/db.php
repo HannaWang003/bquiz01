@@ -8,13 +8,13 @@ function dd($ary){
     echo "</pre>";
 }
 function to($url){
-    header("$url");
+    header("location:$url");
 }
 //class
 class DB{
     //protected 3
     protected $table;
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db01";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db011";
     protected $pdo;
     function __construct($table){
         $this->table=$table;
@@ -95,6 +95,27 @@ class DB{
     function q($sql){
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+}
+$AD=new DB('ad');
+$Admin=new DB('admin');
+$Bottom=new DB('bottom');
+$Image=new DB('image');
+$Menu=new DB('nenu');
+$Mvim=new DB('mvim');
+$News=new DB('news');
+$Title=new DB('title');
+$Total=new DB('total');
+
+if(!isset($_SESSION['visited'])){
+    if($Total->count()==0){
+        $row['total']=1;
+    }
+    else{
+      $row=$Total->find(1);
+      $row['total']++;   
+    }    
+    $Total->save($row);
+    $_SESSION['visited']=1;
 }
 
 ?>

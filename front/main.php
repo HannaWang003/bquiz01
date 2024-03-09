@@ -8,9 +8,9 @@
 					<script>
 						var lin=new Array();
 						<?php
-$lins = $Mvim->all(['sh'=>1]);
-foreach($lins as $lin){
-	echo "lin.push('{$lin['img']}');";
+$rows = $Mvim->all(['sh'=>1]);
+foreach($rows as $row){
+	echo "lin.push('{$row['img']}');";
 }
 ?>
 						var now=0;
@@ -22,7 +22,7 @@ foreach($lins as $lin){
 						}
 						function ww()
 						{
-							$("#mwww").html("<embed loop=true src='"+lin[now]+"' style='width:99%; height:100%;'></embed>")
+							$("#mwww").html("<embed loop=true src='./img/"+lin[now]+"' style='width:99%; height:100%;'></embed>")
 							//$("#mwww").attr("src",lin[now])
 							now++;
 							if(now>=lin.length)

@@ -22,8 +22,7 @@ class DB{
     }
     private function a2s($ary){
         foreach($ary as $col=>$val){
-            $tmp=[];
-            $tmp="`$col`='$val'";
+            $tmp[]="`$col`='$val'";
         }
         return $tmp;
     }

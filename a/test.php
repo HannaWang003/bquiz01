@@ -44,6 +44,12 @@ VALUES
 (NULL, '01D08.gif', '1'),
 (NULL, '01D09.gif', '1');
 
+<!-- menu insert -->
+INSERT INTO `menu` 
+(`id`, `text`, `href`, `sh`, `big_id`) 
+VALUES 
+(NULL, '更多內容', 'index.php?do=news', '1', '2');
+
 
 
 

@@ -24,79 +24,81 @@ include_once "./api/db.php";
         </div>
     </div>
     <div id="main">
-            <?php
-$img = $Title->find(['sh'=>1])['img'];
-            ?>
-            <a href="index.php">
-                <div class="ti" style="background:url('./img/<?=$img?>'); background-size:cover;"></div>
-            </a>
-            <!--標題-->
+        <?php
+        $img = $Title->find(['sh' => 1])['img'];
+        ?>
+        <a href="index.php">
+            <div class="ti" style="background:url('./img/<?= $img ?>'); background-size:cover;"></div>
+        </a>
+        <!--標題-->
         <div id="ms">
             <div id="lf" style="float:left;">
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <style>
-                        .menu{
-                            background:url('./icon/menu.fw.png');
-                            position:relative;
-                            z-index:99;
-                        }
-                        .menu:hover{
-                            background:url('./icon/menu2.fw.png');
-                        }
-                        .sub{
-                            background:url('./icon/menu3.fw.png');
-                        }
-                        .sub:hover{
-                            background:url('./icon/menu4.fw.png'); 
-                        }
-                        .submenu{
-                            display:none;
-                        }
+                    .menu {
+                        background: url('./icon/menu.fw.png');
+                        position: relative;
+                        z-index: 99;
+                    }
+
+                    .menu:hover {
+                        background: url('./icon/menu2.fw.png');
+                    }
+
+                    .sub {
+                        background: url('./icon/menu3.fw.png');
+                    }
+
+                    .sub:hover {
+                        background: url('./icon/menu4.fw.png');
+                    }
+
+                    .submenu {
+                        display: none;
+                    }
                     </style>
                     <span class="t botli">主選單區</span>
                     <?php
-$rows = $Menu->all(['sh'=>1,'menu_id'=>0]);
-foreach($rows as $row){
-    ?>
-<div style="position:relative;">
-<a href="<?=$row['href']?>"><div class='menu' data-id="<?=$row['id']?>" style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;"><?=$row['text']?></div></a>
-<div style="position:absolute;top:20px;left:100px;z-index:100;" class="submenu submenu<?=$row['id']?>" data-id="<?=$row['id']?>">
-<?php
-$subs = $Menu->all(['sh'=>1,'menu_id'=>$row['id']]);
-foreach($subs as $sub){
-    ?>
-<div class='sub' style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;"><?=$sub['text']?></div>
-    <?php
-}
-?>
-</div>
-</div>
-<script>
-    $('.menu').hover(function(){
-        let id=$(this).data('id');
-        $('.submenu').hide();
-        $('.submenu'+id).show();
-    },
-    function(){
-        $('.submenu').hide();
-    })
-    $('.submenu').hover(function(){
-let id=$(this).data('id');
-$('.submenu'+id).show();
-    },
-    function(){
-        $('.submenu').hide();
-    })
-</script>
-    <?php
-}
-
-?>
+                    $rows = $Menu->all(['sh' => 1, 'menu_id' => 0]);
+                    foreach ($rows as $row) {
+                    ?>
+                    <div style="position:relative;" class="topmenu">
+                        <a href="<?= $row['href'] ?>">
+                            <div class='menu' data-id="<?= $row['id'] ?>"
+                                style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;">
+                                <?= $row['text'] ?></div>
+                        </a>
+                        <div style="position:absolute;top:20px;left:100px;z-index:100;"
+                            class="submenu submenu<?= $row['id'] ?>" data-id="<?= $row['id'] ?>">
+                            <?php
+                                $subs = $Menu->all(['sh' => 1, 'menu_id' => $row['id']]);
+                                foreach ($subs as $sub) {
+                                ?>
+                            <div class='sub'
+                                style="width:200px;height:35px;text-align:center;line-height:35px;margin:5px;">
+                                <?= $sub['text'] ?></div>
+                            <?php
+                                }
+                                ?>
+                        </div>
+                    </div>
+                    <script>
+                    $('.topmenu').hover(function() {
+                            $('.submenu').hide();
+                            $(this).children('.submenu').show();
+                        },
+                        function() {
+                            $('.submenu').hide();
+                        })
+                    </script>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
-                        <?=$Total->find(1)['total']?></span>
+                        <?= $Total->find(1)['total'] ?></span>
                 </div>
             </div>
             <div class="di"
@@ -104,15 +106,14 @@ $('.submenu'+id).show();
                 <?php
                 include "marquee.php";
 
-$do=($_GET['do'])??"main";
-$file="./front/{$do}.php";
-if(file_exists($file)){
-	include $file;
-}
-else{
-	include "./front/main.php";
-}
-				?>
+                $do = ($_GET['do']) ?? "main";
+                $file = "./front/{$do}.php";
+                if (file_exists($file)) {
+                    include $file;
+                } else {
+                    include "./front/main.php";
+                }
+                ?>
                 <!-- main -->
             </div>
             <div id="alt"
@@ -137,23 +138,24 @@ else{
                 <!--右邊-->
 
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-                    onclick="lo('<?=(isset($_SESSION['mag']))?'back.php':'?do=login'?>')">管理登入</button>
+                    onclick="lo('<?= (isset($_SESSION['mag'])) ? 'back.php' : '?do=login' ?>')">管理登入</button>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
                     <div class="cent" onclick="pp(1)"><img src="./icon/up.jpg" alt=""></div>
                     <?php
-$rows = $Image->all(['sh'=>1]);
-foreach($rows as $idx=>$row){
-    ?>
-<div id="ssaa<?=$idx;?>" class='im cent'><img src="./img/<?=$row['img']?>" style="width:150px;height:120px;border:3px solid #fc3;margin:2px;"></div>
-    <?php
-}
+                    $rows = $Image->all(['sh' => 1]);
+                    foreach ($rows as $idx => $row) {
+                    ?>
+                    <div id="ssaa<?= $idx; ?>" class='im cent'><img src="./img/<?= $row['img'] ?>"
+                            style="width:150px;height:120px;border:3px solid #fc3;margin:2px;"></div>
+                    <?php
+                    }
 
-?>
-<div class="cent" onclick="pp(2)"><img src="./icon/dn.jpg" alt=""></div>
+                    ?>
+                    <div class="cent" onclick="pp(2)"><img src="./icon/dn.jpg" alt=""></div>
                     <script>
                     var nowpage = 1,
-                        num = <?=$Image->count(['sh'=>1]);?>;
+                        num = <?= $Image->count(['sh' => 1]); ?>;
 
                     function pp(x) {
                         var s, t;
@@ -177,7 +179,7 @@ foreach($rows as $idx=>$row){
         <div style="clear:both;"></div>
         <div
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-            <span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom']?></span>
+            <span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom'] ?></span>
         </div>
     </div>
 
